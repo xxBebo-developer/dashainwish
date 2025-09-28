@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Happy Dashain 2082</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap');
+        
+        /* Ganesh Nepali Font */
+        @font-face {
+            font-family: 'Ganesh Nepali';
+            src: url('https://cdn.jsdelivr.net/gh/lipilekhakarmi/Nepali-Fonts/Ganesh-Nepali.ttf') format('truetype');
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            padding: 5px;
+            background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+                              radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+            min-height: -webkit-fill-available;
+            min-height: -moz-available;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 100%;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        
+        .main-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            opacity: 0;
+            animation: fadeInDown 1.5s forwards;
+            font-family: 'Great+Vibes', cursive;
+            font-weight: bold;
+            letter-spacing: 2px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: #ffd700;
+            margin: 5px 0;
+            opacity: 0;
+            animation: fadeInUp 1.5s 0.5s forwards;
+            font-weight: 300;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .wish-button {
+            background: linear-gradient(45deg, #d32f2f, #b71c1c);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            margin: 15px 0 20px;
+            opacity: 0;
+            animation: fadeIn 2s 1s forwards;
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .wish-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #b71c1c, #d32f2f);
+        }
+        
+        .wish-button:active {
+            transform: translateY(1px);
+        }
+        
+        .wish-content {
+            display: none;
+            margin: 15px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            width: 100%;
+            position: relative;
+            overflow: visible;
+            transform: scale(0.8);
+            opacity: 0;
+            max-height: 90vh;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            font-size: 24px;
+            color: #ff416c;
+        }
+        
+        .youtube-player {
+            position: fixed;
+            top: -200px;
+            left: -200px;
+            width: 1px;
+            height: 1px;
+            z-index: -1;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            font-size: 24px;
+            color: #ff416c;
+        }
+        
+        .wish-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .durga-container {
+            position: relative;
+            margin: 5px 0;
+            z-index: 1;
+        }
+        
+        .durga-image {
+            width: 25%;
+            height: auto;
+            border-radius: 50%;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: scale(0.5);
+            border: 5px solid #d32f2f;
+            animation: borderPulse 3s infinite;
+            z-index: 2;
+            position: relative;
+            transition: all 0.5s ease;
+            max-width: 200px;
+        }
+        
+        .side-image {
+            width: 15%;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            z-index: 1;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            max-width: 120px;
+            transition: all 0.5s ease;
+        }
+        
+        .left-image {
+            left: 3%;
+        }
+        
+        .right-image {
+            right: 3%;
+        }
+        
+        .durga-container {
+            position: relative;
+            margin: 5px 0;
+            z-index: 1;
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nepali-text {
+            font-family: 'Ganesh Nepali', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+            color: #2c3e50;
+            line-height: 1.6;
+            margin: 20px 0;
+            opacity: 0;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(to right, #ffffff, #f9f9f9);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+        
+        .firework {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 1;
+        }
+        
+        .firecracker {
+            position: absolute;
+            font-size: 1.2rem;
+            pointer-events: none;
+            z-index: 2;
+            animation: explode 1.2s forwards;
+        }
+        
+        .flower {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            animation: fall 6s linear forwards;
+            z-index: 1;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #f00;
+            opacity: 0;
+            z-index: 1;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0; 
+                transform: translateY(-15px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(15px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.2); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        @keyframes explode {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(4) rotate(720deg); opacity: 0; }
+        }
+        
+        @keyframes borderPulse {
+            0% { 
+                border-color: #d32f2f; 
+                box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.6);
+            }
+            50% { 
+                border-color: #ffd700; 
+                box-shadow: 0 0 0 15px rgba(255, 215, 0, 0);
+            }
+            100% { 
+                border-color: #d32f2f; 
+                box-shadow: 0 0 0 0 rgba(211, 47, 47, 0);
+            }
+        }
+        
+        @keyframes typewriter {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .1em solid orange;
+            white-space: nowrap;
+            animation: typewriter 3s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Responsive adjustments */
+        /* Desktop adjustments */
+        @media (min-width: 1025px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 25px;
+                margin: 20px;
+                max-width: 1200px;
+            }
+            
+            .main-title {
+                margin-bottom: 20px;
+                font-size: clamp(3rem, 4vw, 4rem);
+            }
+            
+            .subtitle {
+                margin: 10px 0;
+                font-size: clamp(1.3rem, 2vw, 1.6rem);
+            }
+            
+            .wish-content {
+                padding: 30px;
+                margin: 25px auto;
+                max-height: 75vh;
+                max-width: 900px;
+            }
+            
+            .durga-image {
+                width: 30%;
+                max-width: 250px;
+            }
+            
+            .wish-button {
+                padding: 18px 40px;
+                margin: 25px 0 30px;
+                font-size: clamp(1.2rem, 2vw, 1.4rem);
+            }
+            
+            .nepali-text {
+                font-size: clamp(1.5rem, 2vw, 2rem);
+                padding: 25px;
+                margin: 30px 0;
+            }
+        }
+        
+        /* Tablet adjustments */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+                margin: 15px;
+            }
+            
+            .main-title {
+                margin-bottom: 15px;
+                font-size: clamp(2.5rem, 4vw, 3rem);
+            }
+            
+            .subtitle {
+                margin: 8px 0;
+                font-size: clamp(1.2rem, 2vw, 1.5rem);
+            }
+            
+            .wish-content {
+                padding: 25px;
+                margin: 20px auto;
+                max-height: 85vh;
+            }
+            
+            .durga-image {
+                width: 35%;
+            }
+            
+            .wish-button {
+                padding: 15px 35px;
+                margin: 20px 0 25px;
+                font-size: clamp(1.1rem, 2vw, 1.3rem);
+            }
+            
+            .nepali-text {
+                font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+                padding: 20px;
+                margin: 25px 0;
+            }
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                padding: 10px;
+                margin: 8px;
+                border-radius: 15px;
+            }
+            
+            .main-title {
+                margin-bottom: 10px;
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+            }
+            
+            .subtitle {
+                margin: 5px 0;
+                font-size: clamp(1rem, 3vw, 1.3rem);
+            }
+            
+            .wish-content {
+                padding: 15px;
+                margin: 10px auto;
+                max-height: 80vh;
+                border-radius: 15px;
+            }
+            
+            .durga-image {
+                width: 50%;
+            }
+            
+            .side-image {
+                width: 20%;
+                max-width: 80px;
+            }
+            
+            .left-image {
+                left: 1%;
+            }
+            
+            .right-image {
+                right: 1%;
+            }
+            
+            .wish-button {
+                padding: 12px 25px;
+                margin: 15px 0 20px;
+                font-size: clamp(1rem, 3vw, 1.2rem);
+                border-radius: 25px;
+            }
+            
+            .nepali-text {
+                font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 12px;
+            }
+            
+            .music-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            body {
+                padding: 3px;
+            }
+            
+            .container {
+                padding: 8px;
+                margin: 5px;
+                border-radius: 12px;
+            }
+            
+            .wish-content {
+                padding: 12px;
+                margin: 8px auto;
+                max-height: 75vh;
+                border-radius: 12px;
+            }
+            
+            .durga-image {
+                width: 65%;
+            }
+            
+            .side-image {
+                width: 15%;
+                max-width: 60px;
+                display: none; /* Hide side images on very small screens */
+            }
+            
+            .wish-button {
+                padding: 10px 20px;
+                margin: 12px 0 15px;
+                font-size: clamp(0.9rem, 4vw, 1.1rem);
+                border-radius: 20px;
+            }
+            
+            .nepali-text {
+                font-size: clamp(0.9rem, 4vw, 1.3rem);
+                padding: 12px;
+                margin: 15px 0;
+                border-radius: 10px;
+            }
+            
+            .main-title {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+                margin-bottom: 8px;
+            }
+            
+            .subtitle {
+                font-size: clamp(0.9rem, 4vw, 1.1rem);
+                margin: 4px 0;
+            }
+            
+            .music-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+        
+        /* Landscape mobile adjustments */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .wish-content {
+                max-height: 70vh;
+            }
+            
+            .durga-image {
+                width: 40%;
+            }
+            
+            .nepali-text {
+                font-size: clamp(0.9rem, 3vw, 1.4rem);
+                padding: 15px;
+            }
+        }
+        
+        /* Large screen adjustments */
+        @media (min-width: 1200px) {
+            .main-title {
+                font-size: clamp(3rem, 4vw, 4rem);
+            }
+            
+            .subtitle {
+                font-size: clamp(1.3rem, 2vw, 1.8rem);
+            }
+            
+            .wish-button {
+                padding: 18px 40px;
+                font-size: clamp(1.2rem, 2vw, 1.5rem);
+                margin: 25px 0 30px;
+            }
+            
+            .nepali-text {
+                font-size: clamp(1.4rem, 2vw, 2.2rem);
+                padding: 25px;
+                margin: 30px 0;
+            }
+            
+            .durga-image {
+                width: 30%;
+                max-width: 250px;
+            }
+            
+            .side-image {
+                width: 18%;
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">Happy Dashain 2082</h1>
+        <p class="subtitle">A Festival of Victory, Joy, and Blessings</p>
+        <p class="subtitle" style="font-size: clamp(0.9rem, 2vw, 1.3rem); margin: 2px 0; color: #5d4037; font-weight: bold;">Karan Bohara</p>
+        <button class="wish-button" id="wishButton">✨ Reveal Dashain Wishes ✨</button>
+        
+        <div class="wish-content" id="wishContent">
+            <div class="durga-container">
+                <!-- Left side image -->
+                <img src="https://img.freepik.com/premium-photo/traditional-nepalese-dashain-tika-jamara-offerings-blessings-vijaya-dashami_999252-5714.jpg?w=2000" 
+                     alt="Dashain Tika and Jamara" class="side-image left-image">
+                
+                <!-- Center Durga Mata image -->
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbbrAHI269fEhcE3DQF-0u4UZFbm1c4e8Bb4NWJddmQRK3ck2RvI4X5ijGJ4B6lATOkxlOzHGsoWPoUx4Fg2DsM3LDq2uO_THX-mWxPDJghcjihWjCC60-G4CpT30GTxtiY8Z3HFGGNMUp/s1600/durgamatha-PNG-image1.png" 
+                     alt="Durga Mata" class="durga-image" id="durgaImage">
+                
+                <!-- Right side image -->
+                <img src="pngegg.png" 
+                     alt="Dashain Symbol" class="side-image right-image">
+            </div>
+            <p class="nepali-text" id="firstNepaliText" style="font-weight: bold;">दशैँको पावन अवसरमा माता दुर्गाको कृपा सदैव तपाईंको जीवनमा रहोस् । स्वास्थ्य, सुख, समृद्धि र एकताको उज्यालोले घर आँगन भरियोस् ।</p>
+        </div>
+    </div>
+    
+    <div class="youtube-player" id="youtubePlayer">
+        <iframe id="youtubeIframe" width="200" height="100" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <div class="music-toggle" id="musicToggle">🔇</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const wishButton = document.getElementById('wishButton');
+            const wishContent = document.getElementById('wishContent');
+            const durgaImage = document.getElementById('durgaImage');
+            const firstNepaliText = document.getElementById('firstNepaliText');
+            const youtubePlayer = document.getElementById('youtubePlayer');
+            const youtubeIframe = document.getElementById('youtubeIframe');
+            const musicToggle = document.getElementById('musicToggle');
+            
+            // YouTube video ID from the provided URL
+            const youtubeVideoId = 'Adhpa0b-DZg';
+            let isMusicPlaying = false;
+            
+            // Animate main title with typewriter effect
+            setTimeout(() => {
+                applyTypewriterEffect(document.querySelector('.main-title'), "Happy Dashain 2082");
+            }, 500);
+            
+            // Animate button after delay
+            setTimeout(() => {
+                wishButton.style.animation = 'fadeIn 2s forwards';
+            }, 1500);
+            
+            wishButton.addEventListener('click', function() {
+                // Hide button
+                wishButton.classList.add('hidden');
+                
+                // Load YouTube player (completely hidden but plays audio)
+                youtubeIframe.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&loop=1&playlist=${youtubeVideoId}&controls=0&showinfo=0&mute=0&volume=50`;
+                isMusicPlaying = true;
+                musicToggle.textContent = '🔊';
+                
+                // Show wish content with animation
+                wishContent.style.display = 'block';
+                wishContent.style.animation = 'popIn 1s forwards';
+                
+                // Animate images with pop-in effect
+                setTimeout(() => {
+                    durgaImage.style.animation = 'popIn 1.5s forwards';
+                    durgaImage.style.opacity = '1';
+                    
+                    // Animate side images
+                    const leftImage = document.querySelector('.left-image');
+                    const rightImage = document.querySelector('.right-image');
+                    
+                    if (leftImage) {
+                        leftImage.style.animation = 'popIn 1.5s forwards';
+                        leftImage.style.opacity = '1';
+                    }
+                    
+                    if (rightImage) {
+                        rightImage.style.animation = 'popIn 1.5s forwards';
+                        rightImage.style.opacity = '1';
+                    }
+                }, 300);
+                
+                // Animate Nepali text with typewriter effect
+                setTimeout(() => {
+                    applyTypewriterEffect(firstNepaliText, "दशैँको पावन अवसरमा माता दुर्गाको कृपा सदैव तपाईंको जीवनमा रहोस् । स्वास्थ्य, सुख, समृद्धि र एकताको उज्यालोले घर आँगन भरियोस् ।");
+                }, 1500);
+                
+                // Start all animations
+                startAnimations();
+            });
+            
+            // Music toggle
+            musicToggle.addEventListener('click', function() {
+                if (isMusicPlaying) {
+                    youtubeIframe.src = '';
+                    isMusicPlaying = false;
+                    musicToggle.textContent = '🔇';
+                } else {
+                    youtubeIframe.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&loop=1&playlist=${youtubeVideoId}&controls=0&showinfo=0&mute=0&volume=50`;
+                    isMusicPlaying = true;
+                    musicToggle.textContent = '🔊';
+                }
+            });
+            
+            function applyTypewriterEffect(element, text) {
+                element.innerHTML = "";
+                element.style.opacity = '1';
+                
+                let i = 0;
+                const speed = 50; // typing speed in milliseconds
+                
+                function typeWriter() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, speed);
+                    }
+                }
+                
+                typeWriter();
+            }
+            
+            function startAnimations() {
+                // Create fireworks
+                setInterval(createFirework, 200);
+                
+                // Create firecrackers
+                setInterval(createFirecracker, 400);
+                
+                // Create falling flowers
+                setInterval(createFlower, 300);
+                
+                // Create confetti
+                setInterval(createConfetti, 150);
+            }
+            
+            function createFirework() {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                
+                firework.style.left = `${posX}px`;
+                firework.style.top = `${posY}px`;
+                
+                // Random color
+                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8c00', '#ff1493'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                firework.style.backgroundColor = color;
+                
+                document.body.appendChild(firework);
+                
+                // Animate explosion
+                firework.animate([
+                    { transform: 'scale(0)', opacity: 1 },
+                    { transform: 'scale(10)', opacity: 0 }
+                ], {
+                    duration: 1200,
+                    easing: 'ease-out'
+                });
+                
+                // Remove element after animation
+                setTimeout(() => {
+                    firework.remove();
+                }, 1200);
+            }
+            
+            function createFirecracker() {
+                const firecracker = document.createElement('div');
+                firecracker.className = 'firecracker';
+                firecracker.innerHTML = '🧨'; // Firecracker emoji
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                
+                firecracker.style.left = `${posX}px`;
+                firecracker.style.top = `${posY}px`;
+                
+                document.body.appendChild(firecracker);
+                
+                // Animate explosion
+                firecracker.animate([
+                    { transform: 'scale(0) rotate(0deg)', opacity: 1 },
+                    { transform: 'scale(4) rotate(720deg)', opacity: 0 }
+                ], {
+                    duration: 1200,
+                    easing: 'ease-out'
+                });
+                
+                // Remove element after animation
+                setTimeout(() => {
+                    firecracker.remove();
+                }, 1200);
+            }
+            
+            function createFlower() {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.innerHTML = '🌸'; // Flower emoji
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                flower.style.left = `${posX}px`;
+                
+                document.body.appendChild(flower);
+                
+                // Animate falling
+                flower.animate([
+                    { transform: 'translateY(-100px) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(720deg)`, opacity: 0 }
+                ], {
+                    duration: 6000,
+                    easing: 'linear'
+                });
+                
+                // Remove element after animation
+                setTimeout(() => {
+                    flower.remove();
+                }, 6000);
+            }
+            
+            function createConfetti() {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                confetti.style.left = `${posX}px`;
+                
+                // Random color
+                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8c00', '#ff1493'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.backgroundColor = color;
+                
+                // Random shape
+                const shapes = ['circle', 'square', 'triangle'];
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                
+                if (shape === 'circle') {
+                    confetti.style.borderRadius = '50%';
+                } else if (shape === 'triangle') {
+                    confetti.style.width = '0';
+                    confetti.style.height = '0';
+                    confetti.style.backgroundColor = 'transparent';
+                    confetti.style.borderLeft = '4px solid transparent';
+                    confetti.style.borderRight = '4px solid transparent';
+                    confetti.style.borderBottom = `8px solid ${color}`;
+                }
+                
+                document.body.appendChild(confetti);
+                
+                // Animate falling
+                confetti.animate([
+                    { transform: 'translateY(-100px) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(360deg)`, opacity: 0 }
+                ], {
+                    duration: 5000,
+                    easing: 'linear'
+                });
+                
+                // Remove element after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
