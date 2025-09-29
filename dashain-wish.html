@@ -116,6 +116,33 @@
             transform: translateY(1px);
         }
         
+        .reply-button {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            margin: 20px auto 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: block;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .reply-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(45deg, #128C7E, #25D366);
+        }
+        
+        .reply-button:active {
+            transform: translateY(1px);
+        }
+        
         .wish-content {
             display: none;
             margin: 15px auto;
@@ -179,6 +206,96 @@
             z-index: 1001;
             font-size: 24px;
             color: #ff416c;
+        }
+        
+        .whatsapp-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .popup-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: center;
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .close-popup:hover {
+            color: #333;
+        }
+        
+        .popup-content h3 {
+            color: #25D366;
+            margin-bottom: 15px;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+        }
+        
+        .popup-content p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+        
+        #whatsappMessage {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+        
+        #whatsappMessage:focus {
+            outline: none;
+            border-color: #25D366;
+        }
+        
+        .send-button {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            width: 100%;
+        }
+        
+        .send-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(45deg, #128C7E, #25D366);
+        }
+        
+        .send-button:active {
+            transform: translateY(1px);
         }
         
         .wish-content::before {
@@ -483,6 +600,19 @@
                 padding: 20px;
                 margin: 25px 0;
             }
+            
+            .popup-content {
+                padding: 25px;
+                max-width: 450px;
+            }
+            
+            .popup-content h3 {
+                font-size: clamp(1.2rem, 2vw, 1.6rem);
+            }
+            
+            .popup-content p {
+                font-size: clamp(0.9rem, 2vw, 1.1rem);
+            }
         }
         
         /* Mobile adjustments */
@@ -538,6 +668,12 @@
                 border-radius: 25px;
             }
             
+            .reply-button {
+                padding: 10px 20px;
+                margin: 15px auto 10px;
+                font-size: clamp(0.8rem, 3vw, 1rem);
+            }
+            
             .nepali-text {
                 font-size: clamp(1.1rem, 3.5vw, 1.5rem);
                 padding: 15px;
@@ -590,6 +726,12 @@
                 border-radius: 20px;
             }
             
+            .reply-button {
+                padding: 8px 15px;
+                margin: 12px auto 8px;
+                font-size: clamp(0.7rem, 4vw, 0.9rem);
+            }
+            
             .nepali-text {
                 font-size: clamp(0.9rem, 4vw, 1.3rem);
                 padding: 12px;
@@ -614,6 +756,32 @@
                 bottom: 10px;
                 right: 10px;
             }
+            
+            .popup-content {
+                padding: 15px;
+                width: 95%;
+                margin: 0 5px;
+            }
+            
+            .popup-content h3 {
+                font-size: clamp(1rem, 5vw, 1.3rem);
+            }
+            
+            .popup-content p {
+                font-size: clamp(0.7rem, 4vw, 0.9rem);
+                margin-bottom: 12px;
+            }
+            
+            #whatsappMessage {
+                padding: 10px;
+                font-size: clamp(0.7rem, 4vw, 0.8rem);
+                margin-bottom: 12px;
+            }
+            
+            .send-button {
+                padding: 10px 20px;
+                font-size: clamp(0.8rem, 4vw, 1rem);
+            }
         }
         
         /* Landscape mobile adjustments */
@@ -629,6 +797,20 @@
             .nepali-text {
                 font-size: clamp(0.9rem, 3vw, 1.4rem);
                 padding: 15px;
+            }
+            
+            .popup-content {
+                padding: 20px;
+                width: 90%;
+                max-width: 400px;
+            }
+            
+            .popup-content h3 {
+                font-size: clamp(1.1rem, 3vw, 1.4rem);
+            }
+            
+            .popup-content p {
+                font-size: clamp(0.8rem, 2.5vw, 1rem);
             }
         }
         
@@ -663,6 +845,19 @@
                 width: 18%;
                 max-width: 150px;
             }
+            
+            .popup-content {
+                padding: 30px;
+                max-width: 500px;
+            }
+            
+            .popup-content h3 {
+                font-size: clamp(1.3rem, 2vw, 1.8rem);
+            }
+            
+            .popup-content p {
+                font-size: clamp(1rem, 2vw, 1.2rem);
+            }
         }
     </style>
 </head>
@@ -688,6 +883,20 @@
                      alt="Dashain Symbol" class="side-image right-image">
             </div>
             <p class="nepali-text" id="firstNepaliText" style="font-weight: bold;">दशैँको पावन अवसरमा माता दुर्गाको कृपा सदैव तपाईंको जीवनमा रहोस् । स्वास्थ्य, सुख, समृद्धि र एकताको उज्यालोले घर आँगन भरियोस् ।</p>
+            
+            <!-- Reply button -->
+            <button class="reply-button" id="replyButton">💬 Reply with Blessings</button>
+        </div>
+        
+        <!-- WhatsApp Reply Popup -->
+        <div class="whatsapp-popup" id="whatsappPopup">
+            <div class="popup-content">
+                <span class="close-popup" id="closePopup">&times;</span>
+                <h3>Send Your Dashain Blessings</h3>
+                <p>Send your message directly to Karan Bohara via WhatsApp</p>
+                <textarea id="whatsappMessage" placeholder="Type your Dashain blessings here..." rows="4"></textarea>
+                <button class="send-button" id="sendButton">Send via WhatsApp</button>
+            </div>
         </div>
     </div>
     
@@ -772,6 +981,43 @@
                     youtubeIframe.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&loop=1&playlist=${youtubeVideoId}&controls=0&showinfo=0&mute=0&volume=50`;
                     isMusicPlaying = true;
                     musicToggle.textContent = '🔊';
+                }
+            });
+            
+            // Reply button functionality
+            const replyButton = document.getElementById('replyButton');
+            const whatsappPopup = document.getElementById('whatsappPopup');
+            const closePopup = document.getElementById('closePopup');
+            const sendButton = document.getElementById('sendButton');
+            const whatsappMessage = document.getElementById('whatsappMessage');
+            
+            replyButton.addEventListener('click', function() {
+                whatsappPopup.style.display = 'flex';
+            });
+            
+            closePopup.addEventListener('click', function() {
+                whatsappPopup.style.display = 'none';
+            });
+            
+            sendButton.addEventListener('click', function() {
+                const message = whatsappMessage.value.trim();
+                if (message) {
+                    // Replace spaces with %20 for URL encoding
+                    const encodedMessage = encodeURIComponent(message);
+                    // Your WhatsApp number (9812663364) with country code for Nepal (+977)
+                    const whatsappUrl = `https://wa.me/9779812663364?text=${encodedMessage}`;
+                    window.open(whatsappUrl, '_blank');
+                    whatsappPopup.style.display = 'none';
+                    whatsappMessage.value = '';
+                } else {
+                    alert('Please enter a message before sending!');
+                }
+            });
+            
+            // Close popup if clicked outside the content
+            whatsappPopup.addEventListener('click', function(e) {
+                if (e.target === whatsappPopup) {
+                    whatsappPopup.style.display = 'none';
                 }
             });
             
