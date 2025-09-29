@@ -1,0 +1,1007 @@
+@font-face {
+    font-family: 'Ganesh Nepali';
+    src: url('https://cdn.jsdelivr.net/gh/lipilekhakarmi/Nepali-Fonts/Ganesh-Nepali.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000000; /* Pure black background */
+    color: #ffffff;
+    animation: backgroundSwing 10s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundSwing {
+    0% { 
+        background-position: 0% 0%;
+        transform: translateX(-2px) translateY(-1px);
+    }
+    25% { 
+        background-position: 100% 50%;
+        transform: translateX(2px) translateY(1px);
+    }
+    50% { 
+        background-position: 50% 100%;
+        transform: translateX(1px) translateY(2px);
+    }
+    75% { 
+        background-position: 0% 50%;
+        transform: translateX(-1px) translateY(-2px);
+    }
+    100% { 
+        background-position: 0% 0%;
+        transform: translateX(-2px) translateY(-1px);
+    }
+}
+
+.container {
+    text-align: center;
+    padding: 30px;
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    min-height: 100vh;
+    background: transparent;
+    margin: 0;
+    box-sizing: border-box;
+    animation: containerSwing 8s ease-in-out infinite alternate;
+}
+
+.main-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    opacity: 0;
+    animation: fadeInDown 1.5s forwards;
+    font-family: 'Great Vibes', cursive;
+    font-weight: bold;
+    letter-spacing: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: #ffd700;
+    margin: 5px 0;
+    opacity: 0;
+    animation: fadeInUp 1.5s 0.5s forwards;
+    font-weight: 300;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.wish-button {
+    background: linear-gradient(45deg, #d32f2f, #b71c1c);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    margin: 15px 0 20px;
+    opacity: 0;
+    animation: fadeIn 2s 1s forwards;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.wish-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #b71c1c, #d32f2f);
+}
+
+.wish-button:active {
+    transform: translateY(1px);
+}
+
+.wish-content {
+    display: none;
+    margin: 20px auto;
+    padding: 30px;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 90%;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+    transform: scale(1);
+    opacity: 0;
+    max-height: none;
+    backdrop-filter: none;
+    border: none;
+    animation: contentSwing 12s ease-in-out infinite alternate;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 80vh;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.wish-content.visible {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    font-size: 24px;
+    color: #ff416c;
+}
+
+.youtube-player {
+    position: fixed;
+    top: -200px;
+    left: -200px;
+    width: 1px;
+    height: 1px;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    font-size: 24px;
+    color: #ff416c;
+}
+
+.whatsapp-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.whatsapp-popup.visible {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.name-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.name-popup.visible {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    color: #333;
+}
+
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #777;
+}
+
+.close-popup:hover {
+    color: #333;
+}
+
+.popup-content h3 {
+    color: #25D366;
+    margin-bottom: 15px;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+}
+
+.popup-content p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+#whatsappMessage {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    margin-bottom: 20px;
+    resize: vertical;
+    color: #333;
+}
+
+#whatsappMessage:focus {
+    outline: none;
+    border-color: #25D366;
+}
+
+#viewerName {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+#viewerName:focus {
+    outline: none;
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2);
+}
+
+.send-button {
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    width: 100%;
+}
+
+.send-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    background: linear-gradient(45deg, #128C7E, #25D366);
+}
+
+.send-button:active {
+    transform: translateY(1px);
+}
+
+.wish-content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.durga-container {
+    position: relative;
+    margin: 5px 0;
+    z-index: 1;
+}
+
+.durga-image {
+    width: 25%;
+    height: auto;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: scale(0.5);
+    border: 5px solid #d32f2f;
+    animation: borderPulse 3s infinite, imageSwing 6s ease-in-out infinite alternate;
+    z-index: 2;
+    position: relative;
+    transition: all 0.5s ease;
+    max-width: 200px;
+}
+
+.side-image {
+    width: 15%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    z-index: 1;
+    border-radius: 50%; /* Changed from 10px to 50% for circular shape */
+    max-width: 120px;
+    transition: all 0.5s ease;
+    animation: sideImageSwing 7s ease-in-out infinite alternate;
+    border: 3px solid #ffd700; /* Added circular border */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+    animation: borderPulse 4s infinite, sideImageSwing 7s ease-in-out infinite alternate; /* Added border animation */
+}
+
+.left-image {
+    left: 3%;
+}
+
+.right-image {
+    right: 3%;
+    background-color: white; /* Added white background for the right image */
+    padding: 5px; /* Added padding to ensure the background is visible around the image */
+}
+
+.durga-container {
+    position: relative;
+    margin: 5px 0;
+    z-index: 1;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nepali-text {
+    font-family: 'Ganesh Nepali', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: #ffffff;
+    line-height: 1.6;
+    margin: 20px 0;
+    opacity: 0;
+    text-align: center;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    position: relative;
+    z-index: 1;
+    font-weight: 400;
+    border: none;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.greeting-line {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: #d32f2f;
+    font-weight: 800; /* Extra bold */
+    font-family: 'Great Vibes', cursive; /* Stylish font */
+    width: 100%;
+}
+
+.viewer-name {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.nepali-message {
+    text-align: center;
+    margin: 20px 0;
+    line-height: 1.8;
+    color: #ffffff;
+    font-size: clamp(1.5rem, 3vw, 2.2rem); /* Increased font size */
+    padding: 0 20px;
+}
+
+.closing-line {
+    text-align: right;
+    margin-top: 30px;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: #ffffff;
+    font-family: 'Great Vibes', cursive;
+    width: 100%;
+}
+
+.sender-name {
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+
+.firework {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 1;
+}
+
+.firecracker {
+    position: absolute;
+    font-size: 1.2rem;
+    pointer-events: none;
+    z-index: 2;
+    animation: explode 1.2s forwards;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.flower {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    animation: fall 6s linear forwards;
+    z-index: 1;
+}
+
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #f00;
+    opacity: 0;
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from { 
+        opacity: 0; 
+        transform: translateY(-15px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(15px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.2); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes explode {
+    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+    100% { transform: scale(4) rotate(720deg); opacity: 0; }
+}
+
+@keyframes borderPulse {
+    0% { 
+        border-color: #d32f2f; 
+        box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.6);
+    }
+    50% { 
+        border-color: #ffd700; 
+        box-shadow: 0 0 0 15px rgba(255, 215, 0, 0);
+    }
+    100% { 
+        border-color: #d32f2f; 
+        box-shadow: 0 0 0 0 rgba(211, 47, 47, 0);
+    }
+}
+
+@keyframes imageSwing {
+    0% { 
+        transform: scale(0.5) translateX(-3px) rotate(-1deg);
+    }
+    25% { 
+        transform: scale(0.5) translateX(2px) rotate(1deg);
+    }
+    50% { 
+        transform: scale(0.5) translateX(1px) rotate(0.5deg);
+    }
+    75% { 
+        transform: scale(0.5) translateX(-2px) rotate(-0.5deg);
+    }
+    100% { 
+        transform: scale(0.5) translateX(3px) rotate(1deg);
+    }
+}
+
+@keyframes typewriter {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+}
+
+@keyframes confetti-fall {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes containerSwing {
+    0% { 
+        transform: translateX(-3px) translateY(-1px) rotate(-0.2deg);
+    }
+    25% { 
+        transform: translateX(2px) translateY(1px) rotate(0.1deg);
+    }
+    50% { 
+        transform: translateX(1px) translateY(-2px) rotate(0.3deg);
+    }
+    75% { 
+        transform: translateX(-2px) translateY(2px) rotate(-0.1deg);
+    }
+    100% { 
+        transform: translateX(3px) translateY(-1px) rotate(0.2deg);
+    }
+}
+
+@keyframes contentSwing {
+    0% { 
+        transform: scale(0.8) translateX(-2px) translateY(-1px);
+    }
+    25% { 
+        transform: scale(0.8) translateX(1px) translateY(1px);
+    }
+    50% { 
+        transform: scale(0.8) translateX(1px) translateY(-1px);
+    }
+    75% { 
+        transform: scale(0.8) translateX(-1px) translateY(1px);
+    }
+    100% { 
+        transform: scale(0.8) translateX(2px) translateY(-1px);
+    }
+}
+
+@keyframes sideImageSwing {
+    0% { 
+        transform: translateY(-50%) translateX(-3px) rotate(-1deg);
+    }
+    25% { 
+        transform: translateY(-50%) translateX(2px) rotate(1deg);
+    }
+    50% { 
+        transform: translateY(-50%) translateX(3px) rotate(2deg);
+    }
+    75% { 
+        transform: translateY(-50%) translateX(-2px) rotate(-1deg);
+    }
+    100% { 
+        transform: translateY(-50%) translateX(-3px) rotate(-2deg);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive adjustments */
+/* Desktop adjustments */
+@media (min-width: 1025px) {
+    body {
+        padding: 15px;
+    }
+    
+    .container {
+        padding: 25px;
+        margin: 20px;
+        max-width: 1200px;
+    }
+    
+    .main-title {
+        margin-bottom: 20px;
+        font-size: clamp(3rem, 4vw, 4rem);
+    }
+    
+    .subtitle {
+        margin: 10px 0;
+        font-size: clamp(1.3rem, 2vw, 1.6rem);
+    }
+    
+    .wish-content {
+        padding: 30px;
+        margin: 25px auto;
+        max-height: none;
+        max-width: 900px;
+    }
+    
+    .durga-image {
+        width: 30%;
+        max-width: 250px;
+    }
+    
+    .wish-button {
+        padding: 18px 40px;
+        margin: 25px 0 30px;
+        font-size: clamp(1.2rem, 2vw, 1.4rem);
+    }
+    
+    .nepali-text {
+        font-size: clamp(1.5rem, 2vw, 2rem);
+        padding: 25px;
+        margin: 30px 0;
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 15px;
+        margin: 15px;
+    }
+    
+    .main-title {
+        margin-bottom: 15px;
+        font-size: clamp(2.5rem, 4vw, 3rem);
+    }
+    
+    .subtitle {
+        margin: 8px 0;
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
+    }
+    
+    .wish-content {
+        padding: 25px;
+        margin: 20px auto;
+        max-height: none;
+    }
+    
+    .durga-image {
+        width: 35%;
+    }
+    
+    .wish-button {
+        padding: 15px 35px;
+        margin: 20px 0 25px;
+        font-size: clamp(1.1rem, 2vw, 1.3rem);
+    }
+    
+    .nepali-text {
+        font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+        padding: 20px;
+        margin: 25px 0;
+    }
+    
+    .popup-content {
+        padding: 25px;
+        max-width: 450px;
+    }
+    
+    .popup-content h3 {
+        font-size: clamp(1.2rem, 2vw, 1.6rem);
+    }
+    
+    .popup-content p {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+    
+    .container {
+        padding: 10px;
+        margin: 8px;
+        border-radius: 15px;
+    }
+    
+    .main-title {
+        margin-bottom: 10px;
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+    
+    .subtitle {
+        margin: 5px 0;
+        font-size: clamp(1rem, 3vw, 1.3rem);
+    }
+    
+    .wish-content {
+        padding: 15px;
+        margin: 10px auto;
+        max-height: none;
+        border-radius: 15px;
+    }
+    
+    .durga-image {
+        width: 50%;
+    }
+    
+    .side-image {
+        width: 20%;
+        max-width: 80px;
+    }
+    
+    .left-image {
+        left: 1%;
+    }
+    
+    .right-image {
+        right: 1%;
+    }
+    
+    .wish-button {
+        padding: 12px 25px;
+        margin: 15px 0 20px;
+        font-size: clamp(1rem, 3vw, 1.2rem);
+        border-radius: 25px;
+    }
+    
+    .nepali-text {
+        font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 12px;
+    }
+    
+    .music-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+    body {
+        padding: 3px;
+    }
+    
+    .container {
+        padding: 8px;
+        margin: 5px;
+        border-radius: 12px;
+    }
+    
+    .wish-content {
+        padding: 12px;
+        margin: 8px auto;
+        max-height: none;
+        border-radius: 12px;
+    }
+    
+    .durga-image {
+        width: 65%;
+    }
+    
+    .side-image {
+        width: 15%;
+        max-width: 60px;
+        display: none; /* Hide side images on very small screens */
+    }
+    
+    .wish-button {
+        padding: 10px 20px;
+        margin: 12px 0 15px;
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+        border-radius: 20px;
+    }
+    
+    .nepali-text {
+        font-size: clamp(0.9rem, 4vw, 1.3rem);
+        padding: 12px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+    
+    .main-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        margin-bottom: 8px;
+    }
+    
+    .subtitle {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+        margin: 4px 0;
+    }
+    
+    .music-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .popup-content {
+        padding: 15px;
+        width: 95%;
+        margin: 0 5px;
+    }
+    
+    .popup-content h3 {
+        font-size: clamp(1rem, 5vw, 1.3rem);
+    }
+    
+    .popup-content p {
+        font-size: clamp(0.7rem, 4vw, 0.9rem);
+        margin-bottom: 12px;
+    }
+    
+    #whatsappMessage {
+        padding: 10px;
+        font-size: clamp(0.7rem, 4vw, 0.8rem);
+        margin-bottom: 12px;
+    }
+    
+    .send-button {
+        padding: 10px 20px;
+        font-size: clamp(0.8rem, 4vw, 1rem);
+    }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .wish-content {
+        max-height: none;
+    }
+    
+    .durga-image {
+        width: 40%;
+    }
+    
+    .nepali-text {
+        font-size: clamp(0.9rem, 3vw, 1.4rem);
+        padding: 15px;
+    }
+    
+    .popup-content {
+        padding: 20px;
+        width: 90%;
+        max-width: 400px;
+    }
+    
+    .popup-content h3 {
+        font-size: clamp(1.1rem, 3vw, 1.4rem);
+    }
+    
+    .popup-content p {
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+    }
+}
+
+/* Large screen adjustments */
+@media (min-width: 1200px) {
+    .main-title {
+        font-size: clamp(3rem, 4vw, 4rem);
+    }
+    
+    .subtitle {
+        font-size: clamp(1.3rem, 2vw, 1.8rem);
+    }
+    
+    .wish-button {
+        padding: 18px 40px;
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
+        margin: 25px 0 30px;
+    }
+    
+    .nepali-text {
+        font-size: clamp(1.4rem, 2vw, 2.2rem);
+        padding: 25px;
+        margin: 30px 0;
+    }
+    
+    .durga-image {
+        width: 30%;
+        max-width: 250px;
+    }
+    
+    .side-image {
+        width: 18%;
+        max-width: 150px;
+    }
+    
+    .wish-content {
+        max-height: none;
+        padding: 30px;
+        margin: 25px auto;
+        max-width: 900px;
+    }
+    
+    .popup-content {
+        padding: 30px;
+        max-width: 500px;
+    }
+    
+    .popup-content h3 {
+        font-size: clamp(1.3rem, 2vw, 1.8rem);
+    }
+    
+    .popup-content p {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+}
