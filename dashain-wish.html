@@ -399,6 +399,7 @@
             pointer-events: none;
             z-index: 2;
             animation: explode 1.2s forwards;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
         }
         
         .flower {
@@ -417,6 +418,7 @@
             background-color: #f00;
             opacity: 0;
             z-index: 1;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
         
         /* Animations */
@@ -1058,6 +1060,15 @@
                 
                 // Create confetti
                 setInterval(createConfetti, 150);
+                
+                // Create additional firecrackers for more festive effect
+                setInterval(createFirecracker, 200);
+                
+                // Create additional confetti for more festive effect
+                setInterval(createConfetti, 80);
+                
+                // Create special festive firecrackers
+                setInterval(createFestiveFirecracker, 600);
             }
             
             function createFirework() {
@@ -1107,19 +1118,51 @@
                 
                 document.body.appendChild(firecracker);
                 
-                // Animate explosion
+                // Animate explosion with more festive effect
                 firecracker.animate([
                     { transform: 'scale(0) rotate(0deg)', opacity: 1 },
-                    { transform: 'scale(4) rotate(720deg)', opacity: 0 }
+                    { transform: 'scale(6) rotate(1080deg)', opacity: 0 }
                 ], {
-                    duration: 1200,
+                    duration: 1500,
                     easing: 'ease-out'
                 });
                 
                 // Remove element after animation
                 setTimeout(() => {
                     firecracker.remove();
-                }, 1200);
+                }, 1500);
+            }
+            
+            function createFestiveFirecracker() {
+                const firecracker = document.createElement('div');
+                firecracker.className = 'firecracker';
+                firecracker.innerHTML = '🎆'; // Firework emoji for special effect
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                
+                firecracker.style.left = `${posX}px`;
+                firecracker.style.top = `${posY}px`;
+                
+                // Special styling for festive firecrackers
+                firecracker.style.fontSize = '2rem';
+                
+                document.body.appendChild(firecracker);
+                
+                // Animate explosion with special festive effect
+                firecracker.animate([
+                    { transform: 'scale(0) rotate(0deg)', opacity: 1 },
+                    { transform: 'scale(8) rotate(1440deg)', opacity: 0 }
+                ], {
+                    duration: 2000,
+                    easing: 'ease-out'
+                });
+                
+                // Remove element after animation
+                setTimeout(() => {
+                    firecracker.remove();
+                }, 2000);
             }
             
             function createFlower() {
@@ -1157,7 +1200,7 @@
                 confetti.style.left = `${posX}px`;
                 
                 // Random color
-                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8c00', '#ff1493'];
+                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8c00', '#ff1493', '#ffa500', '#800080'];
                 const color = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.backgroundColor = color;
                 
@@ -1178,19 +1221,19 @@
                 
                 document.body.appendChild(confetti);
                 
-                // Animate falling
+                // Animate falling with more festive effect
                 confetti.animate([
                     { transform: 'translateY(-100px) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight}px) rotate(360deg)`, opacity: 0 }
+                    { transform: `translateY(${window.innerHeight}px) rotate(720deg)`, opacity: 0 }
                 ], {
-                    duration: 5000,
-                    easing: 'linear'
+                    duration: 4000,
+                    easing: 'ease-out'
                 });
                 
                 // Remove element after animation
                 setTimeout(() => {
                     confetti.remove();
-                }, 5000);
+                }, 4000);
             }
         });
     </script>
