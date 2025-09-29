@@ -31,7 +31,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow: auto;
             position: relative;
             padding: 5px;
             background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
@@ -50,8 +50,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100%;
+            justify-content: flex-start;
+            height: auto;
+            min-height: 100%;
             background: rgba(0, 0, 0, 0.1);
             border-radius: 20px;
             backdrop-filter: blur(5px);
@@ -153,7 +154,7 @@
             max-width: 90%;
             width: 100%;
             position: relative;
-            overflow: visible;
+            overflow: auto;
             transform: scale(0.8);
             opacity: 0;
             max-height: 90vh;
@@ -582,7 +583,7 @@
             .wish-content {
                 padding: 25px;
                 margin: 20px auto;
-                max-height: 85vh;
+                max-height: none;
             }
             
             .durga-image {
@@ -640,7 +641,7 @@
             .wish-content {
                 padding: 15px;
                 margin: 10px auto;
-                max-height: 80vh;
+                max-height: none;
                 border-radius: 15px;
             }
             
@@ -705,7 +706,7 @@
             .wish-content {
                 padding: 12px;
                 margin: 8px auto;
-                max-height: 75vh;
+                max-height: none;
                 border-radius: 12px;
             }
             
@@ -787,7 +788,7 @@
         /* Landscape mobile adjustments */
         @media (max-width: 768px) and (orientation: landscape) {
             .wish-content {
-                max-height: 70vh;
+                max-height: none;
             }
             
             .durga-image {
@@ -844,6 +845,13 @@
             .side-image {
                 width: 18%;
                 max-width: 150px;
+            }
+            
+            .wish-content {
+                max-height: none;
+                padding: 30px;
+                margin: 25px auto;
+                max-width: 900px;
             }
             
             .popup-content {
