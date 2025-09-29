@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Handle window resize for responsive animations
+    window.addEventListener('resize', function() {
+        // Reinitialize animations on resize
+        if (typeof startAnimations === 'function') {
+            // Clear existing intervals
+            if (window.animationIntervals) {
+                window.animationIntervals.forEach(clearInterval);
+            }
+            // Restart animations
+            startAnimations();
+        }
+    });
     const wishButton = document.getElementById('wishButton');
     const wishContent = document.getElementById('wishContent');
     const durgaImage = document.getElementById('durgaImage');
@@ -204,35 +216,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function startAnimations() {
+        // Clear existing intervals if they exist
+        if (window.animationIntervals) {
+            window.animationIntervals.forEach(clearInterval);
+        }
+        
+        // Store intervals for cleanup
+        window.animationIntervals = [];
+        
         // Create fireworks
-        setInterval(createFirework, 200);
+        window.animationIntervals.push(setInterval(createFirework, 200));
         
         // Create firecrackers
-        setInterval(createFirecracker, 400);
+        window.animationIntervals.push(setInterval(createFirecracker, 400));
         
         // Create falling flowers
-        setInterval(createFlower, 300);
+        window.animationIntervals.push(setInterval(createFlower, 300));
         
         // Create confetti
-        setInterval(createConfetti, 150);
+        window.animationIntervals.push(setInterval(createConfetti, 150));
         
         // Create additional firecrackers for more festive effect
-        setInterval(createFirecracker, 200);
+        window.animationIntervals.push(setInterval(createFirecracker, 200));
         
         // Create additional confetti for more festive effect
-        setInterval(createConfetti, 80);
+        window.animationIntervals.push(setInterval(createConfetti, 80));
         
         // Create special festive firecrackers
-        setInterval(createFestiveFirecracker, 600);
+        window.animationIntervals.push(setInterval(createFestiveFirecracker, 600));
     }
     
     function createFirework() {
         const firework = document.createElement('div');
         firework.className = 'firework';
         
-        // Random position
-        const posX = Math.random() * window.innerWidth;
-        const posY = Math.random() * window.innerHeight;
+        // Random position within container bounds
+        const fireworkContainer = document.querySelector('.container') || document.body;
+        const containerRect = fireworkContainer.getBoundingClientRect();
+        const posX = containerRect.left + (Math.random() * containerRect.width);
+        const posY = containerRect.top + (Math.random() * containerRect.height);
         
         firework.style.left = `${posX}px`;
         firework.style.top = `${posY}px`;
@@ -264,9 +286,11 @@ document.addEventListener('DOMContentLoaded', function() {
         firecracker.className = 'firecracker';
         firecracker.innerHTML = '🧨'; // Firecracker emoji
         
-        // Random position
-        const posX = Math.random() * window.innerWidth;
-        const posY = Math.random() * window.innerHeight;
+        // Random position within container bounds
+        const firecrackerContainer = document.querySelector('.container') || document.body;
+        const containerRect = firecrackerContainer.getBoundingClientRect();
+        const posX = containerRect.left + (Math.random() * containerRect.width);
+        const posY = containerRect.top + (Math.random() * containerRect.height);
         
         firecracker.style.left = `${posX}px`;
         firecracker.style.top = `${posY}px`;
@@ -293,9 +317,11 @@ document.addEventListener('DOMContentLoaded', function() {
         firecracker.className = 'firecracker';
         firecracker.innerHTML = '🎆'; // Firework emoji for special effect
         
-        // Random position
-        const posX = Math.random() * window.innerWidth;
-        const posY = Math.random() * window.innerHeight;
+        // Random position within container bounds
+        const festiveContainer = document.querySelector('.container') || document.body;
+        const containerRect = festiveContainer.getBoundingClientRect();
+        const posX = containerRect.left + (Math.random() * containerRect.width);
+        const posY = containerRect.top + (Math.random() * containerRect.height);
         
         firecracker.style.left = `${posX}px`;
         firecracker.style.top = `${posY}px`;
@@ -325,16 +351,20 @@ document.addEventListener('DOMContentLoaded', function() {
         flower.className = 'flower';
         flower.innerHTML = '🌸'; // Flower emoji
         
-        // Random position
-        const posX = Math.random() * window.innerWidth;
+        // Random position within container bounds
+        const flowerPosContainer = document.querySelector('.container') || document.body;
+        const containerRect = flowerPosContainer.getBoundingClientRect();
+        const posX = containerRect.left + (Math.random() * containerRect.width);
         flower.style.left = `${posX}px`;
         
         document.body.appendChild(flower);
         
         // Animate falling
+        const flowerContainer = document.querySelector('.container') || document.body;
+        const flowerContainerHeight = flowerContainer.clientHeight || window.innerHeight;
         flower.animate([
             { transform: 'translateY(-100px) rotate(0deg)', opacity: 1 },
-            { transform: `translateY(${window.innerHeight}px) rotate(720deg)`, opacity: 0 }
+            { transform: `translateY(${flowerContainerHeight}px) rotate(720deg)`, opacity: 0 }
         ], {
             duration: 6000,
             easing: 'linear'
@@ -350,8 +380,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
         
-        // Random position
-        const posX = Math.random() * window.innerWidth;
+        // Random position within container bounds
+        const confettiPosContainer = document.querySelector('.container') || document.body;
+        const containerRect = confettiPosContainer.getBoundingClientRect();
+        const posX = containerRect.left + (Math.random() * containerRect.width);
         confetti.style.left = `${posX}px`;
         
         // Random color
@@ -377,9 +409,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(confetti);
         
         // Animate falling with more festive effect
+        const confettiContainer = document.querySelector('.container') || document.body;
+        const confettiContainerHeight = confettiContainer.clientHeight || window.innerHeight;
         confetti.animate([
             { transform: 'translateY(-100px) rotate(0deg)', opacity: 1 },
-            { transform: `translateY(${window.innerHeight}px) rotate(720deg)`, opacity: 0 }
+            { transform: `translateY(${confettiContainerHeight}px) rotate(720deg)`, opacity: 0 }
         ], {
             duration: 4000,
             easing: 'ease-out'
